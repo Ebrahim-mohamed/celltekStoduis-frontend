@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +15,7 @@ type Categories = "Residence" | "Commercial" | "Industries";
 
 type Project = {
   _id: string;
-  image: string;
+  images: string[];
   serviceKind: ServiceKind;
   category: Categories;
   title: string;
@@ -34,7 +34,7 @@ type Project = {
 const projectSchema = z.object({
   title: z.string().min(1, "Title is required"),
   client: z.string().min(1, "Client name is required"),
-  image: z.any().optional(),
+  images: z.any().optional(),
   serviceKind: z.enum([
     "Turnkey Projects",
     "Protective Coating",
@@ -50,6 +50,87 @@ const projectSchema = z.object({
 });
 
 type ProjectForm = z.infer<typeof projectSchema>;
+
+/* ================= MINI IMAGE SLIDER ================= */
+function ImageSlider({ images, title }: { images: string[]; title: string }) {
+  const [current, setCurrent] = useState(0);
+
+  if (!images || images.length === 0) {
+    return (
+      <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+        <span className="text-gray-400 text-xs">No image</span>
+      </div>
+    );
+  }
+
+  if (images.length === 1) {
+    return (
+      <img
+        src={`https://api.egysmart.org/uploads/${images[0]}`}
+        alt={title}
+        className="w-full h-full object-cover"
+      />
+    );
+  }
+
+  const prev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrent((c) => (c === 0 ? images.length - 1 : c - 1));
+  };
+
+  const next = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrent((c) => (c === images.length - 1 ? 0 : c + 1));
+  };
+
+  return (
+    <div className="relative w-full h-full group overflow-hidden">
+      {/* Image */}
+      <img
+        src={`https://api.egysmart.org/uploads/${images[current]}`}
+        alt={`${title} ${current + 1}`}
+        className="w-full h-full object-cover transition-opacity duration-300"
+      />
+
+      {/* Prev button */}
+      <button
+        onClick={prev}
+        className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-6 h-6 rounded-full text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        ‹
+      </button>
+
+      {/* Next button */}
+      <button
+        onClick={next}
+        className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-6 h-6 rounded-full text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        ›
+      </button>
+
+      {/* Dots */}
+      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-1">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrent(i);
+            }}
+            className={`w-1.5 h-1.5 rounded-full transition-colors ${
+              i === current ? "bg-white" : "bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Counter */}
+      <div className="absolute top-1 right-1 bg-black/50 text-white text-[10px] px-1.5 py-0.5 rounded">
+        {current + 1}/{images.length}
+      </div>
+    </div>
+  );
+}
 
 /* ================= MODAL ================= */
 function Modal({
@@ -99,7 +180,6 @@ export default function ProjectsTab() {
     resolver: zodResolver(projectSchema),
   });
 
-  /* 🔒 useEffect NOT CHANGED */
   useEffect(() => {
     const loadProjects = async () => {
       try {
@@ -121,12 +201,12 @@ export default function ProjectsTab() {
     try {
       const res = await fetch(
         `https://api.egysmart.org/api/projects/${id}/important`,
-        { method: "PATCH" },
+        { method: "PATCH" }
       );
       if (!res.ok) throw new Error("Failed to toggle important");
       const updated = await res.json();
       setProjects((prev) =>
-        prev.map((p) => (p._id === updated._id ? updated : p)),
+        prev.map((p) => (p._id === updated._id ? updated : p))
       );
     } catch (err) {
       console.error(err);
@@ -138,8 +218,12 @@ export default function ProjectsTab() {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("client", data.client);
-    if (data.image && (data.image as unknown as FileList)[0])
-      formData.append("image", (data.image as unknown as FileList)[0]);
+
+    const fileList = data.images as unknown as FileList;
+    if (fileList && fileList.length > 0) {
+      Array.from(fileList).forEach((file) => formData.append("images", file));
+    }
+
     formData.append("serviceKind", data.serviceKind);
     formData.append("category", data.category);
     formData.append("budget", String(data.budget));
@@ -150,17 +234,15 @@ export default function ProjectsTab() {
     formData.append("scopeOfWork", data.scopeOfWork);
 
     if (editingProject) {
-      // Update
       const res = await fetch(
         `https://api.egysmart.org/api/projects/${editingProject._id}`,
-        { method: "PUT", body: formData },
+        { method: "PUT", body: formData }
       );
       const updated = await res.json();
       setProjects((prev) =>
-        prev.map((p) => (p._id === updated._id ? updated : p)),
+        prev.map((p) => (p._id === updated._id ? updated : p))
       );
     } else {
-      // Create
       const res = await fetch("https://api.egysmart.org/api/projects", {
         method: "POST",
         body: formData,
@@ -220,7 +302,6 @@ export default function ProjectsTab() {
         </button>
       </div>
 
-      {/* EMPTY */}
       {projects.length === 0 && (
         <p className="text-gray-500">No projects found</p>
       )}
@@ -236,12 +317,9 @@ export default function ProjectsTab() {
                 : "border-gray-200 dark:border-gray-700"
             }`}
           >
-            <div className="w-full md:w-48 h-32 md:h-auto overflow-hidden flex-shrink-0">
-              <img
-                src={`https://api.egysmart.org/uploads/${project.image}`}
-                alt={project.title ?? "Project Image"}
-                className="w-full h-full object-cover"
-              />
+            {/* ── IMAGE SLIDER THUMBNAIL ── */}
+            <div className="w-full md:w-48 h-40 md:h-auto flex-shrink-0">
+              <ImageSlider images={project.images} title={project.title} />
             </div>
 
             <div className="p-4 flex-1 flex flex-col justify-between">
@@ -251,15 +329,12 @@ export default function ProjectsTab() {
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                       {project.title ?? "Untitled"}
                     </h3>
-
-                    {/* IMPORTANT BADGE */}
                     {project.important && (
                       <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-yellow-400 text-yellow-900 uppercase tracking-wide">
                         ★ Featured
                       </span>
                     )}
                   </div>
-
                   <span className="text-xs text-gray-400 dark:text-gray-300 whitespace-nowrap shrink-0">
                     {new Date(project.createdAt).toLocaleDateString()}
                   </span>
@@ -268,17 +343,19 @@ export default function ProjectsTab() {
                 <p className="text-sm mt-1">
                   <b>Client:</b> {project.client}
                 </p>
-
                 <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">
                   {project.serviceKind ?? "N/A"}
                 </p>
                 <p className="text-sm mt-1">
                   <b>Category:</b> {project.category || "N/A"}
                 </p>
+                <p className="text-sm mt-1 text-gray-500 dark:text-gray-400">
+                  <b>Images:</b> {project.images?.length ?? 0}
+                </p>
 
                 <div className="flex flex-wrap gap-3 mt-2 text-sm text-gray-700 dark:text-gray-300">
                   <span>
-                    <b>Budget: </b>
+                    <b>Budget:</b>{" "}
                     {project.budget != null
                       ? Number(project.budget).toLocaleString()
                       : 0}{" "}
@@ -370,6 +447,7 @@ export default function ProjectsTab() {
               <p className="text-red-600 text-sm">{errors.client.message}</p>
             )}
           </div>
+
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
               Location
@@ -386,14 +464,22 @@ export default function ProjectsTab() {
 
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
-              Project Image
+              Project Images{" "}
+              <span className="text-gray-400 text-xs">(select multiple)</span>
             </label>
             <input
               type="file"
-              {...register("image")}
+              multiple
+              {...register("images")}
               accept="image/*"
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
+            {editingProject && (
+              <p className="text-xs text-gray-400 mt-1">
+                Currently has {editingProject.images?.length ?? 0} image(s).
+                Selecting new files will replace them all.
+              </p>
+            )}
           </div>
 
           <div>
@@ -409,6 +495,7 @@ export default function ProjectsTab() {
               <option value="Concrete Flooring">Concrete Flooring</option>
             </select>
           </div>
+
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
               Category

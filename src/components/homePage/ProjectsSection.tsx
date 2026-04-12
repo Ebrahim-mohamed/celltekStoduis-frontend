@@ -10,11 +10,10 @@ import "swiper/css/navigation";
 import { MostTextPattern } from "../MostTextPattern";
 import { ProjectBox } from "./ProjectBox";
 
-/* ================= TYPES ================= */
 type Project = {
   _id: string;
   title: string;
-  image: string;
+  images: string[];              // ← was: image: string
   location: string;
   bua: number;
   important: boolean;
@@ -25,20 +24,16 @@ export function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [currentSlide, setCurrentSlide] = useState(1);
 
-  /* ================= FETCH IMPORTANT PROJECTS ONLY ================= */
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch(
-          "https://api.egysmart.org/api/projects/important",
-        );
+        const res = await fetch("https://api.egysmart.org/api/projects/important");
         const data = await res.json();
         setProjects(data);
       } catch (err) {
         console.error("Failed to fetch projects", err);
       }
     };
-
     fetchProjects();
   }, []);
 
@@ -49,7 +44,6 @@ export function ProjectsSection() {
       className="p-[var(--sectionPadding)] bg-[#0A0A0A] overflow-hidden"
       id="projects"
     >
-      {/* ================= TITLE ================= */}
       <div className="mb-14 flex justify-between items-end gap-6 max-[600px]:flex-col max-[600px]:items-start">
         <MostTextPattern
           redText="OUR PORTFOLIO"
@@ -75,34 +69,24 @@ export function ProjectsSection() {
         </div>
       </div>
 
-      {/* ================= SLIDER ================= */}
       <Swiper
         modules={[Autoplay, Navigation]}
         loop
         slidesPerView={window.innerWidth <= 800 ? 1 : 1.4}
         speed={700}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        navigation={{
-          prevEl: ".feedback-prev",
-          nextEl: ".feedback-next",
-        }}
+        autoplay={{ delay: 2500, disableOnInteraction: false }}
+        navigation={{ prevEl: ".feedback-prev", nextEl: ".feedback-next" }}
         onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
         className="overflow-visible projects-swiper"
       >
         {projects.map((project) => (
-          <SwiperSlide
-            key={project._id}
-            className="transition-all duration-500"
-          >
+          <SwiperSlide key={project._id} className="transition-all duration-500">
             <div className="project-scale">
               <ProjectBox
                 title={project.title}
                 location={project.location || "N/A"}
                 bue={`${project.bua.toLocaleString()} m²`}
-                img={`https://api.egysmart.org/uploads/${project.image}`}
+                img={`https://api.egysmart.org/uploads/${project.images?.[0]}`}  // ← first image only
               />
             </div>
           </SwiperSlide>

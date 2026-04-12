@@ -5,7 +5,7 @@ type Project = {
   _id: string;
   title: string;
   client: string;
-  image: string;
+  images: string[];              // ← was: image: string
   serviceKind: string;
   category: string;
   duration: string;
@@ -13,6 +13,7 @@ type Project = {
   scopeOfWork: string;
   budget: number;
   status: string;
+  location: string;
 };
 
 const SERVICE_MAP: Record<string, string> = {
@@ -25,11 +26,7 @@ async function getProjects() {
   const res = await fetch("https://api.egysmart.org/api/projects", {
     cache: "no-store",
   });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch projects");
-  }
-
+  if (!res.ok) throw new Error("Failed to fetch projects");
   return res.json();
 }
 
@@ -37,7 +34,7 @@ export async function ReqProject({ cat }: { cat: string }) {
   const projects: Project[] = await getProjects();
 
   const filteredProjects = projects.filter(
-    (project) => project.serviceKind === SERVICE_MAP[cat],
+    (project) => project.serviceKind === SERVICE_MAP[cat]
   );
 
   return (
@@ -61,8 +58,8 @@ export async function ReqProject({ cat }: { cat: string }) {
             duration={project.duration}
             bua={String(project.bua)}
             scop={project.scopeOfWork}
-            location="New Cairo" // backend doesn't have it yet
-            img={project.image}
+            location={project.location}
+            images={project.images}        // ← pass full array
           />
         ))}
       </div>
