@@ -1,60 +1,29 @@
 import { Hero } from "@/components/Hero";
-import { FutureSection } from "@/components/servicesPage/FutureSection";
-import { ServiceBox } from "@/components/servicesPage/ServiceBox";
 
+import { ServiceBox } from "@/components/servicesPage/ServiceBox";
+const services=[{img:"conceptBack",title:"Architectural Visualization",des:"Transform architectural concepts into immersive visual experiences that communicate design intent with clarity and emotion. From residential developments to commercial projects, our photorealistic renderings capture materials, lighting, atmosphere, and spatial relationships, helping stakeholders visualize the final outcome long before construction begins.",id:1,cat:"arc",icon:"arc"},
+  {img:"conceptBack",title:"Product Rendering",des:"Showcase products with stunning realism and precision through high-end CGI visualization. Whether for product launches, advertising campaigns, e-commerce, or investor presentations, we create detailed visuals that highlight craftsmanship, materials, and design while eliminating the limitations of traditional photography.",id:2,cat:"product",icon:"product"},
+  {img:"conceptBack",title:"Virtual Tours & Animation",des:"Bring ideas to life through dynamic animations and interactive virtual experiences. Our cinematic walkthroughs and immersive tours allow audiences to explore spaces, products, and environments from every angle, creating deeper engagement and a more compelling understanding of the design.",id:3,cat:"ver",icon:"ver"},
+  {img:"conceptBack",title:"Concept & Marketing Assets",des:"Turn concepts into impactful visual stories designed to inspire action. We create marketing-focused assets that help brands, developers, and agencies communicate their vision through compelling imagery, campaign visuals, presentations, and promotional content tailored for both digital and print platforms.",id:4,cat:"concept",icon:"concept"},
+]
 export default function Services() {
   return (
     <div>
       <Hero
+      smallText="What we do"
         page="services"
-        title="Our Services"
+        title={<p>Premium <span className="text-[#5B8CFF]">solutions</span> crafted<br></br> around your vision</p>}
         pra={
           <span>
-            We guarantee satisfaction by supplying secure, novel, and premium
-            solutions <br /> engineered for outstanding performance and quality
+           From architectural visualization to immersive experiences, we transform ideas into compelling visual realities.
           </span>
         }
       />
-      <FutureSection />
-      <ServiceBox
-        id="turnkeyProjects"
-        title="Turnkey Projects"
-        img="turnkeyProjects"
-        secTitle="END TO END"
-        des={[
-          "End-to-end project delivery from concept to handover",
-          "Full responsibility for planning, execution, and coordination",
-          "Cost, quality, and timeline control under one contract",
-          "Seamless collaboration across all disciplines",
-        ]}
-        cat="turnkey-projects"
-      />
-      <ServiceBox
-        id="protectiveCoating"
-        title="Protective Coating"
-        img="protectiveCoating"
-        secTitle="EPOXY COATING"
-        des={[
-          "Advanced epoxy and chemical-resistant coating systems",
-          "Protection against corrosion, abrasion, and harsh conditions",
-          "Engineered solutions for industrial and commercial facilities",
-          "Extended lifespan and enhanced surface performance",
-        ]}
-        cat="protective-coating"
-      />
-      <ServiceBox
-        id="concreteFlooring"
-        title="Concrete Flooring"
-        img="concreteFlooring"
-        secTitle="HEAVY-DUTY FLOORING"
-        des={[
-          "High-performance concrete and heavy-duty flooring systems",
-          "Solutions designed for industrial and high-traffic environments",
-          "Precision execution for durability and long service life",
-          "Low-maintenance, load-resistant flooring solutions",
-        ]}
-        cat="concrete-flooring"
-      />
+      <div className="w-full">
+        {
+          services.map(serv=><ServiceBox cat={serv.cat} des={serv.des} icon={serv.icon} id={serv.id} img={serv.img} title={serv.title} key={serv.id} />)
+        }
+      </div>
     </div>
   );
 }

@@ -1,55 +1,39 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function ServiceBox({
   img,
-  title,
-  secTitle,
+  title,  
   des,
   id,
   cat,
+  icon,
 }: {
   img: string;
-  title: string;
-  secTitle: string;
-  des: string[];
-  id?: string;
+  title: string;  
+  des: string;
+  id:number,
   cat: string;
+  icon:string
 }) {
   return (
     <div
-      className="py-50 px-20 max-[650px]:py-25 max-[650px]:px-10 bg-cover bg-no-repeat flex items-center justify-center flex-col relative"
-      style={{ backgroundImage: `url(/services/${img}.webp)` }}
-      id={id}
+      className={`  items-center justify-center max-[650px]:flex-col ${id%2==0?" flex-row-reverse  ":"  "} flex relative bg-[#1F1F1F]`}
     >
-      <div
-        className="absolute top-0 left-0 w-full h-full  
-         bg-[rgba(0,0,0,0.55)]
-         bg-cover bg-center bg-no-repeat"
-      ></div>
+      <Image src={`/services/${img}.png`} alt="image" width={500} height={500} className="w-full"/>
+      <div className="w-full  ">
+        <div className="flex flex-col gap-[1.5rem] p-[5rem]">
+
+<Image src={`/services/${icon}.svg`} alt="icon" width={200} height={200} className="w-[4.5rem] aspect-square"  />
+<p className="text-[2.5rem] text-[#E6E9EF] font-bold">{title}</p>
+<p className="text-[1rem] text-[#B8BDC7] font-normal">{des}</p>
       <Link
         href={`/projects/${cat}`}
-        className="p-6 bg-[#FFFFFF14] border-[#FFFFFF0A] border backdrop-blur-[4.5px] min-w-3xl max-[650px]:min-w-full relative"
-      >
-        <div className=" absolute top-2 right-4 text-[1.5rem] text-white">
-          &#x2197;
-        </div>
-        <div className="flex items-center justify-center mb-8 flex-col ">
-          <p className="text-[1.5rem] font-bold text-[#CD2735]">
-            &#x2014; {secTitle}
-          </p>
-          <p className="text-[3rem] text-white">{title}</p>
-        </div>
-        <ul className=" list-disc pl-6">
-          {des.map((point) => (
-            <li
-              className="text-[1.125rem] font-normal leading-[160%] text-white"
-              key={point}
-            >
-              {point}
-            </li>
-          ))}
-        </ul>
+        className="text-[1rem] font-medium text-[#E6E9EF]"
+        >View Projects
       </Link>
+        </div>
+      </div>
     </div>
   );
 }

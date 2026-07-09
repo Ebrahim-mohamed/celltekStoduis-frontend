@@ -5,10 +5,12 @@ export function Hero({
   title,
   pra,
   page,
+  smallText
 }: {
   title: string | ReactNode;
   pra: string | ReactNode;
   page: string;
+  smallText:string
 }) {
   return (
     <div
@@ -33,7 +35,7 @@ export function Hero({
       )}
       {/* Content */}
     <div className="text-[#E6E9EF] text-[0.8rem] py-2 px-4 rounded-full bg-[#212121]">
-      What we do
+      {smallText}
     </div>
       <div className="relative z-10 font-black text-[4.75rem] max-[1200px]:text-[6.5rem] max-[600px]:text-[4.5rem] max-[900px]:text-[5.5rem] leading-[100%]">
         {title}
