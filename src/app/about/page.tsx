@@ -1,31 +1,32 @@
 import { SecondSection } from "@/components/aboutPage/SecondSection";
 import { Hero } from "../../components/Hero";
 import { ValuesSection } from "@/components/aboutPage/ValuesSection";
-import { VandMSection } from "@/components/aboutPage/VandMSection";
 import { ClientsSection } from "@/components/ClientsSection";
-import { MilestonesSection } from "@/components/aboutPage/MilestonesSection";
-import { MindsSection } from "@/components/aboutPage/MindsSection";
+
+
+import { SegSection } from "@/components/aboutPage/SegSection";
+import { FeedbacksSection } from "@/components/homePage/FeedbacksSection";
+import { QandASection } from "@/components/aboutPage/QandA";
 
 export default function About() {
   return (
     <div>
       <Hero
-        page="about"
-        title="We Build Life"
+      smallText="About Us"
+        page="services"
+        title={<p>Exceptional Work Built<br></br> Around <span className="text-[#5B8CFF]">Your Vision</span></p>}
         pra={
           <span>
-            Our dedication is to deliver safe, innovative, and top-quality{" "}
-            <br />
-            outcomes that ensure both performance and client satisfaction
+           Combining technology, architectural expertise, and creative storytelling to bring ideas to life through exceptional visual experiences.
           </span>
         }
       />
       <SecondSection />
+      <ClientsSection/>
+      <SegSection />
       <ValuesSection />
-      <VandMSection />
-      <MilestonesSection />
-      <MindsSection />
-      <ClientsSection />
+      <FeedbacksSection/>
+      <QandASection/>
     </div>
   );
 }

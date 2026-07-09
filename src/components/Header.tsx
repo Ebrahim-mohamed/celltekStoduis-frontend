@@ -6,8 +6,8 @@ import { useState } from "react";
 const links = [
   { name: "Home", to: "" },
   { name: "Services", to: "services" },
-  { name: "About Us", to: "about" },
   { name: "Portfolio", to: "community" },
+  { name: "About", to: "about" },
   // { name: "Subsidiary", to: "subsidiary" },
   { name: "Contact us", to: "contact" },
   { name: "Start a project", to: "start-project" },
