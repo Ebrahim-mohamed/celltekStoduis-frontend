@@ -72,7 +72,7 @@ export default function LogosTab() {
   useEffect(() => {
     const loadLogos = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/logos");
+        const res = await fetch("http://localhost:4002/api/logos");
         const data = await res.json();
         setLogos(data);
       } catch (err) {
@@ -89,7 +89,7 @@ export default function LogosTab() {
     const formData = new FormData();
     formData.append("image", data.image[0]);
 
-    const res = await fetch("https://api.egysmart.org/api/logos", {
+    const res = await fetch("http://localhost:4002/api/logos", {
       method: "POST",
       body: formData,
     });
@@ -105,7 +105,7 @@ export default function LogosTab() {
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this logo?")) return;
 
-    await fetch(`https://api.egysmart.org/api/logos/${id}`, {
+    await fetch(`http://localhost:4002/api/logos/${id}`, {
       method: "DELETE",
     });
 
@@ -145,7 +145,7 @@ export default function LogosTab() {
             className="border bg-black rounded-lg p-4  dark:bg-gray-800 shadow-sm flex flex-col items-center justify-between"
           >
             <img
-              src={`https://api.egysmart.org/uploads/${logo.image}`}
+              src={`http://localhost:4002/uploads/${logo.image}`}
               alt="Partner Logo"
               className="h-20 object-contain mb-3"
             />

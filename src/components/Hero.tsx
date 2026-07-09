@@ -31,34 +31,16 @@ export function Hero({
           <source src="/ved.mp4" type="video/mp4" />
         </video>
       )}
-
-      {/* Radial gradient overlay */}
-      {page === "home" && (
-        <div
-          className="absolute inset-0 z-[1] pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.80) 100%)",
-          }}
-        />
-      )}
-
       {/* Content */}
-      {page === "home" && (
-        <p className="relative z-10 text-[1rem] max-[700px]:text-[1.5rem] font-[1000] text-[#BBC4D1]">
-          Est 2015 - CAIRO, EGYPT
-        </p>
-      )}
-
-      <div className="relative z-10 font-black text-[7.5rem] max-[1200px]:text-[6.5rem] max-[600px]:text-[4.5rem] max-[900px]:text-[5.5rem] leading-[100%]">
+    <div className="text-[#E6E9EF] text-[0.8rem] py-2 px-4 rounded-full bg-[#212121]">
+      What we do
+    </div>
+      <div className="relative z-10 font-black text-[4.75rem] max-[1200px]:text-[6.5rem] max-[600px]:text-[4.5rem] max-[900px]:text-[5.5rem] leading-[100%]">
         {title}
       </div>
 
-      <div className="relative z-10 text-[1.25rem] font-normal">{pra}</div>
+      <div className="relative z-10 text-[1rem] text-[#B8BDC7] font-normal">{pra}</div>
 
-      <Link href="#first" className="relative z-10 text-[1.5rem] text-white">
-        &darr;
-      </Link>
     </div>
   );
 }

@@ -4,8 +4,7 @@ import "./globals.css";
 import RootLayoutClient from "./RootLayout";
 
 export const metadata: Metadata = {
-  title: "Egy Smart",
-  description: "Building The Future With Precision",
+  title: "Celltek Studios",
 };
 
 export default function RootLayout({

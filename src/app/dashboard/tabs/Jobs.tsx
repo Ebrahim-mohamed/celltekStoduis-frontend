@@ -56,7 +56,7 @@ export default function JobsTab() {
   useEffect(() => {
     const loadJobs = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/jobs");
+        const res = await fetch("http://localhost:4002/api/jobs");
         const data = await res.json();
         setJobs(data);
       } catch (err) {
@@ -70,13 +70,13 @@ export default function JobsTab() {
 
   const submitJob = async (data: JobFormData) => {
     if (editingJob) {
-      await fetch(`https://api.egysmart.org/api/jobs/${editingJob._id}`, {
+      await fetch(`http://localhost:4002/api/jobs/${editingJob._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
     } else {
-      await fetch("https://api.egysmart.org/api/jobs", {
+      await fetch("http://localhost:4002/api/jobs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -89,14 +89,14 @@ export default function JobsTab() {
 
     // Reload jobs
     setLoading(true);
-    const res = await fetch("https://api.egysmart.org/api/jobs");
+    const res = await fetch("http://localhost:4002/api/jobs");
     const refreshed = await res.json();
     setJobs(refreshed);
     setLoading(false);
   };
 
   const deleteJob = async (id: string) => {
-    await fetch(`https://api.egysmart.org/api/jobs/${id}`, {
+    await fetch(`http://localhost:4002/api/jobs/${id}`, {
       method: "DELETE",
     });
     setJobs(jobs.filter((j) => j._id !== id));

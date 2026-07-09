@@ -44,7 +44,7 @@ export function Form() {
   useEffect(() => {
     const loadJobs = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/jobs");
+        const res = await fetch("http://localhost:4002/api/jobs");
         const data = await res.json();
         setJobs(data);
       } catch (err) {
@@ -87,7 +87,7 @@ export function Form() {
           };
 
     try {
-      const res = await fetch("https://api.egysmart.org/api/join", {
+      const res = await fetch("http://localhost:4002/api/join", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

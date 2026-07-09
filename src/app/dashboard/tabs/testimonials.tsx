@@ -60,7 +60,7 @@ export default function TestimonialsTab() {
   useEffect(() => {
     const loadTestimonials = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/testimonials");
+        const res = await fetch("http://localhost:4002/api/testimonials");
         const data = await res.json();
         setTestimonials(data);
       } catch (err) {
@@ -74,13 +74,13 @@ export default function TestimonialsTab() {
 
   const submitForm = async (data: TestimonialFormData) => {
     if (editing) {
-      await fetch(`https://api.egysmart.org/api/testimonials/${editing._id}`, {
+      await fetch(`http://localhost:4002/api/testimonials/${editing._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
     } else {
-      await fetch("https://api.egysmart.org/api/testimonials", {
+      await fetch("http://localhost:4002/api/testimonials", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -93,14 +93,14 @@ export default function TestimonialsTab() {
 
     // reload testimonials
     setLoading(true);
-    const res = await fetch("https://api.egysmart.org/api/testimonials");
+    const res = await fetch("http://localhost:4002/api/testimonials");
     const refreshed = await res.json();
     setTestimonials(refreshed);
     setLoading(false);
   };
 
   const deleteTestimonial = async (id: string) => {
-    await fetch(`https://api.egysmart.org/api/testimonials/${id}`, {
+    await fetch(`http://localhost:4002/api/testimonials/${id}`, {
       method: "DELETE",
     });
     setTestimonials(testimonials.filter((t) => t._id !== id));

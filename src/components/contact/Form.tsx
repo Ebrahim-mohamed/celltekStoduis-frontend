@@ -41,7 +41,7 @@ export function Form() {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      const res = await fetch("https://api.egysmart.org/api/contacts", {
+      const res = await fetch("http://localhost:4002/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

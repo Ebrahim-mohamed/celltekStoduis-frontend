@@ -77,7 +77,7 @@ export default function NewsTab() {
   useEffect(() => {
     const loadNews = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/news");
+        const res = await fetch("http://localhost:4002/api/news");
         if (!res.ok) throw new Error("Failed to fetch news");
         const data = await res.json();
         setNews(data);
@@ -102,7 +102,7 @@ export default function NewsTab() {
     if (editingNews) {
       // Edit
       const res = await fetch(
-        `https://api.egysmart.org/api/news/${editingNews._id}`,
+        `http://localhost:4002/api/news/${editingNews._id}`,
         {
           method: "PUT",
           body: formData,
@@ -112,7 +112,7 @@ export default function NewsTab() {
       setNews((prev) => prev.map((n) => (n._id === updated._id ? updated : n)));
     } else {
       // Add
-      const res = await fetch("https://api.egysmart.org/api/news", {
+      const res = await fetch("http://localhost:4002/api/news", {
         method: "POST",
         body: formData,
       });
@@ -128,7 +128,7 @@ export default function NewsTab() {
   /* ---------- DELETE ---------- */
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this news item?")) return;
-    await fetch(`https://api.egysmart.org/api/news/${id}`, {
+    await fetch(`http://localhost:4002/api/news/${id}`, {
       method: "DELETE",
     });
     setNews((prev) => prev.filter((n) => n._id !== id));
@@ -177,7 +177,7 @@ export default function NewsTab() {
             <div className="w-full md:w-48 h-32 md:h-auto overflow-hidden flex-shrink-0">
               {item.image && (
                 <img
-                  src={`https://api.egysmart.org/uploads/${item.image}`}
+                  src={`http://localhost:4002/uploads/${item.image}`}
                   alt={item.headline ?? "News Image"}
                   className="w-full h-full object-cover"
                 />

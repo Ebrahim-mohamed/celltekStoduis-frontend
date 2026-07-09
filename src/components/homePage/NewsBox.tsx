@@ -13,7 +13,7 @@ export function NewsBox({
     <div
       className="flex flex-col justify-end gap-4 min-h-144 p-8 bg-cover bg-no-repeat bg-center text-white border border-white max-w-232 rounded-3xl relative overflow-hidden"
       style={{
-        backgroundImage: `url(https://api.egysmart.org/uploads/${img})`,
+        backgroundImage: `url(http://localhost:4002/uploads/${img})`,
       }}
     >
       <div className="absolute top-0 left-0 w-full h-full bg-[#00000060]"></div>

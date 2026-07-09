@@ -12,14 +12,14 @@ export function HeaderLink({
 }) {
   const path = usePathname();
 
-  if (link === "contact")
+  if (link === "start-project")
     return (
       <Link
-        href="/contact"
+        href="/start-project"
         onClick={fun}
-        className="px-6 py-4 border text-[1rem] font-medium text-white border-white max-[750px]:text-[1.5rem]"
+        className="px-[0.75rem] py-[0.5rem] flex ml-[3rem] items-center justify-center text-[0.75rem] font-medium text-white rounded-[60rem] bg-[#365EBD] max-[750px]:text-[1.5rem]"
       >
-        {name} &rarr;
+        {name}
       </Link>
     );
 
@@ -27,7 +27,7 @@ export function HeaderLink({
     <Link
       href={`/${link}`}
       onClick={fun}
-      className={`text-[1rem] max-[750px]:text-[1.5rem] text-white hover:scale-110 duration-75 ${
+      className={`text-[1rem] max-[750px]:text-[1.5rem] text-[#B8BDC7] hover:text-white duration-75 ${
         path.includes(link) && name !== "Home" ? "font-bold" : "font-light"
       }`}
     >

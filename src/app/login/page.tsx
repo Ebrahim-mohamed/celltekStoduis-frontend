@@ -13,7 +13,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
 
-    const res = await fetch("https://api.egysmart.org/api/auth/login", {
+    const res = await fetch("http://localhost:4002/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),

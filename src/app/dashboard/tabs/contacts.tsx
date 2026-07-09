@@ -22,7 +22,7 @@ export default function ContactsTab() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/contacts");
+        const res = await fetch("http://localhost:4002/api/contacts");
         if (!res.ok) throw new Error("Failed to fetch contacts");
         const data = await res.json();
         setContacts(data);
@@ -38,7 +38,7 @@ export default function ContactsTab() {
   const markAsSeen = async (id: string) => {
     try {
       const res = await fetch(
-        `https://api.egysmart.org/api/contacts/${id}/seen`,
+        `http://localhost:4002/api/contacts/${id}/seen`,
         {
           method: "PATCH",
         },
@@ -63,7 +63,7 @@ export default function ContactsTab() {
   /* ================= DELETE ================= */
   const deleteContact = async (id: string) => {
     try {
-      await fetch(`https://api.egysmart.org/api/contacts/${id}`, {
+      await fetch(`http://localhost:4002/api/contacts/${id}`, {
         method: "DELETE",
       });
       setContacts((prev) => prev.filter((c) => c._id !== id));

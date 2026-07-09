@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MostTextPattern } from "../MostTextPattern";
+
 import { JobBox } from "./JobBox";
 
 type Job = {
@@ -17,7 +17,7 @@ export function JobsSection() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/jobs", {
+        const res = await fetch("http://localhost:4002/api/jobs", {
           cache: "no-store",
         });
 
@@ -40,21 +40,6 @@ export function JobsSection() {
       className="p-[var(--sectionPadding)] bg-cover bg-no-repeat bg-[url('/community/communityBg.webp')] flex flex-col items-center justify-center gap-6"
       id="first"
     >
-      <MostTextPattern
-        isCenter
-        moreWidth
-        redText="Careers"
-        whiteText="Careers at EGY Smart"
-        pra={
-          <span>
-            At EGY Smart, you will work on impactful projects, collaborate with{" "}
-            <br />
-            experienced professionals, and grow within a dynamic engineering{" "}
-            <br />
-            environment.
-          </span>
-        }
-      />
 
       {loading ? (
         <p className="text-white">Loading jobs...</p>

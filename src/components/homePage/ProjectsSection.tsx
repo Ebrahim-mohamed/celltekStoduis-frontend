@@ -7,7 +7,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { MostTextPattern } from "../MostTextPattern";
+
 import { ProjectBox } from "./ProjectBox";
 
 type Project = {
@@ -27,7 +27,7 @@ export function ProjectsSection() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/projects/important");
+        const res = await fetch("http://localhost:4002/api/projects/important");
         const data = await res.json();
         setProjects(data);
       } catch (err) {
@@ -45,12 +45,6 @@ export function ProjectsSection() {
       id="projects"
     >
       <div className="mb-14 flex justify-between items-end gap-6 max-[600px]:flex-col max-[600px]:items-start">
-        <MostTextPattern
-          redText="OUR PORTFOLIO"
-          whiteText="Signature"
-          blueText="Developments"
-          pra="Egy Smart provides comprehensive construction and renovation services, focusing on turn-key projects, specialized tasks, and cutting-edge engineering solutions."
-        />
 
         <div className="flex items-end justify-center gap-4">
           <div className="text-white text-[1rem] font-medium">
@@ -86,7 +80,7 @@ export function ProjectsSection() {
                 title={project.title}
                 location={project.location || "N/A"}
                 bue={`${project.bua.toLocaleString()} m²`}
-                img={`https://api.egysmart.org/uploads/${project.images?.[0]}`}  // ← first image only
+                img={`http://localhost:4002/uploads/${project.images?.[0]}`}  // ← first image only
               />
             </div>
           </SwiperSlide>

@@ -10,65 +10,54 @@ import { Autoplay, Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
-
+import { MostUsedHeader } from "../MostUsedHeader";
+const feedbacks=[{feedback:"Fast, collaborative, and incredibly detail-oriented. Celltek became an extension of our creative team and consistently delivered premium visuals under tight timelines.",img:"",job:"Senior Producer at Northframe Agency",name:"Emily Carter",_id:"1"}]
 export function FeedbacksSection() {
-  const [feedbacks, setFeedbacks] = useState<
-    {
-      _id: string;
-      name: string;
-      job: string;
-      feedback: string;
-    }[]
-  >([]);
+  // const [feedbacks, setFeedbacks] = useState<
+  //   {
+  //     _id: string;
+  //     name: string;
+  //     job: string;
+  //     feedback: string;
+  //   }[]
+  // >([]);
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchFeedbacks = async () => {
-      try {
-        const res = await fetch("https://api.egysmart.org/api/testimonials", {
-          cache: "no-store",
-        });
+  // useEffect(() => {
+  //   const fetchFeedbacks = async () => {
+  //     try {
+  //       const res = await fetch("http://localhost:4002/api/testimonials", {
+  //         cache: "no-store",
+  //       });
 
-        if (!res.ok) throw new Error("Failed to fetch testimonials");
+  //       if (!res.ok) throw new Error("Failed to fetch testimonials");
 
-        const data = await res.json();
+  //       const data = await res.json();
 
-        const mapped = data.map((item: any) => ({
-          _id: item._id,
-          name: item.name,
-          job: item.title || item.company || "",
-          feedback: item.feedback,
-        }));
+  //       const mapped = data.map((item: any) => ({
+  //         _id: item._id,
+  //         name: item.name,
+  //         job: item.title || item.company || "",
+  //         feedback: item.feedback,
+  //       }));
 
-        setFeedbacks(mapped);
-      } catch (err) {
-        console.error("Error fetching testimonials:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       setFeedbacks(mapped);
+  //     } catch (err) {
+  //       console.error("Error fetching testimonials:", err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchFeedbacks();
-  }, []);
+  //   fetchFeedbacks();
+  // }, []);
 
-  if (loading) return null;
+  // if (loading) return null;
 
   return (
     <div className="p-[var(--sectionPadding)] bg-[#0A0A0A] overflow-hidden">
-      {/* Title */}
-      <div className="mb-14">
-        <SecondTextPattern
-          redText="Client Satisfaction"
-          title={
-            <p className="text-[4rem] font-[350] text-white">
-              Our <span className="text-[#277FCD]">Partners</span>
-              <br />
-              Feedback
-            </p>
-          }
-        />
-      </div>
+      <MostUsedHeader smallText="What Our Clients Say" mainHeader={<p>Built on <span className="text-[#5B8CFF]">Trust</span></p>} />
 
       {/* Slider */}
       <Swiper

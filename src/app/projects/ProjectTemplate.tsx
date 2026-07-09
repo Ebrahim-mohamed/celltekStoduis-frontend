@@ -31,7 +31,7 @@ export function ProjectTemplate({
   bud: number;
   stat: string;
 }) {
-  const baseUrl = "https://api.egysmart.org/uploads/";
+  const baseUrl = "http://localhost:4002/uploads/";
 
   return (
     <div

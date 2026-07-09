@@ -1,11 +1,13 @@
 import { WhoSection } from "@/components/homePage/WhoSection";
 import { Hero } from "../components/Hero";
-import { NumbersSection } from "@/components/homePage/NumbersSection";
 import { ServicesSection } from "@/components/homePage/ServicesSection";
 import { ClientsSection } from "@/components/ClientsSection";
 import { FeedbacksSection } from "@/components/homePage/FeedbacksSection";
-import { NewsSection } from "@/components/homePage/News";
-import { ProjectsSection } from "@/components/homePage/ProjectsSection";
+import { WhySection } from "@/components/homePage/Why";
+import { ProccesSection } from "@/components/homePage/Procces";
+import { SectorsSection } from "@/components/homePage/Sectors";
+
+
 
 export default function Home() {
   return (
@@ -20,12 +22,12 @@ export default function Home() {
         pra={<span>EGYSMART where vision meets exactness</span>}
       />
       <WhoSection />
-      <NumbersSection />
       <ServicesSection />
       <ClientsSection />
-      <ProjectsSection />
-      <NewsSection />
+      <WhySection />
       <FeedbacksSection />
+      <ProccesSection/>
+      <SectorsSection/>
     </div>
   );
 }
