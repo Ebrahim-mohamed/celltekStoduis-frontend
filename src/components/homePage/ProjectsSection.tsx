@@ -7,13 +7,12 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-
 import { ProjectBox } from "./ProjectBox";
 
 type Project = {
   _id: string;
   title: string;
-  images: string[];              // ← was: image: string
+  images: string[];
   location: string;
   bua: number;
   important: boolean;
@@ -27,17 +26,28 @@ export function ProjectsSection() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/projects/important");
-        const data = await res.json();
+        const res = await fetch(
+          "http://localhost:4002/api/projects/important"
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch projects");
+        }
+
+        const data: Project[] = await res.json();
+
         setProjects(data);
       } catch (err) {
         console.error("Failed to fetch projects", err);
       }
     };
+
     fetchProjects();
   }, []);
 
-  if (projects.length === 0) return null;
+  if (projects.length === 0) {
+    return null;
+  }
 
   return (
     <div
@@ -45,7 +55,6 @@ export function ProjectsSection() {
       id="projects"
     >
       <div className="mb-14 flex justify-between items-end gap-6 max-[600px]:flex-col max-[600px]:items-start">
-
         <div className="flex items-end justify-center gap-4">
           <div className="text-white text-[1rem] font-medium">
             <span className="text-[1.5rem]">{currentSlide}</span> /
@@ -53,10 +62,17 @@ export function ProjectsSection() {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="feedback-prev text-[#9EA8B7] w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center hover:bg-[#277FCD] hover:text-white">
+            <button
+              type="button"
+              className="feedback-prev text-[#9EA8B7] w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center hover:bg-[#277FCD] hover:text-white"
+            >
               &#x21D0;
             </button>
-            <button className="feedback-next text-[#9EA8B7] w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center hover:bg-[#277FCD] hover:text-white">
+
+            <button
+              type="button"
+              className="feedback-next text-[#9EA8B7] w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center hover:bg-[#277FCD] hover:text-white"
+            >
               &#x21D2;
             </button>
           </div>
@@ -66,21 +82,37 @@ export function ProjectsSection() {
       <Swiper
         modules={[Autoplay, Navigation]}
         loop
-        slidesPerView={window.innerWidth <= 800 ? 1 : 1.4}
+        slidesPerView={1}
         speed={700}
-        autoplay={{ delay: 2500, disableOnInteraction: false }}
-        navigation={{ prevEl: ".feedback-prev", nextEl: ".feedback-next" }}
-        onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        navigation={{
+          prevEl: ".feedback-prev",
+          nextEl: ".feedback-next",
+        }}
+        breakpoints={{
+          801: {
+            slidesPerView: 1.4,
+          },
+        }}
+        onSlideChange={(swiper) => {
+          setCurrentSlide(swiper.realIndex + 1);
+        }}
         className="overflow-visible projects-swiper"
       >
         {projects.map((project) => (
-          <SwiperSlide key={project._id} className="transition-all duration-500">
+          <SwiperSlide
+            key={project._id}
+            className="transition-all duration-500"
+          >
             <div className="project-scale">
               <ProjectBox
                 title={project.title}
                 location={project.location || "N/A"}
                 bue={`${project.bua.toLocaleString()} m²`}
-                img={`http://localhost:4002/uploads/${project.images?.[0]}`}  // ← first image only
+                img={`http://localhost:4002/uploads/${project.images?.[0]}`}
               />
             </div>
           </SwiperSlide>
