@@ -4,26 +4,22 @@ import Link from "next/link";
 import CompanyProfileForm from "./CompanyForm";
 
 const firstLinks = [
-  { link: "Company", to: "community" },
+  { link: "Home", to: "/" },
   { link: "About Us", to: "about" },
-  { link: "News", to: "home/#news" },
-];
-const secondLinks = [
   { link: "Services", to: "services" },
-  { link: "Turnkey Projects", to: "services/#turnkeyProjects" },
-  { link: "Flooring Projects", to: "services/#flooringProjects" },
-  { link: "Concrete Flooring", to: "services/#concreteFlooring" },
+  { link: "Portfolio", to: "portfolio" },
+  { link: "Contact Us", to: "contact" },
 ];
-const thirdLinks = [{ link: "Connect", to: "contact" }];
+const thirdLinks = [{ link: "Find Us", to: "contact" }];
 const social = [
-  { link: "facebook", to: "https://www.facebook.com/share/19jqUgPwUL/" },
+  { link: "facebook", to: "https://www.facebook.com/celltekstudios" },
   {
     link: "instagram",
-    to: "https://www.instagram.com/egysmart_es?igsh=bXk5ZzhlYWJsNGIw",
+    to: "https://www.instagram.com/celltekstudios/",
   },
   {
     link: "linkedin",
-    to: "https://www.linkedin.com/company/egysmart-4-modern-engineering/",
+    to: "www.linkedin.com/company/celltekstudios",
   },
 ];
 export function Footer() {
@@ -32,39 +28,32 @@ export function Footer() {
       <div className="flex items-center justify-between gap-6 max-[500px]:flex-col max-[500px]:items-start">
         <Link href="/" className="w-fit">
           <Image
-            className="w-[12.9rem] aspect-69/16"
+            className="w-[12.9rem] "
             src="/logo.png"
             alt="logo"
             width={300}
             height={300}
           />
         </Link>
-        <CompanyProfileForm />
+        {/* <CompanyProfileForm /> */}
       </div>
       <div>
         <div className="flex flex-col gap-10">
           <div className="flex items-start justify-between  w-full max-[800px]:flex-col max-[800px]:gap-4 ">
             <p className="text-[1rem] font-[325] text-white max-[800px]:mb-6">
-              Egy Smart is specialized in modern engineering that focus <br />{" "}
-              on analysis, design, and innovation of contemporary <br />{" "}
-              construction, founded in 2015. <br /> Our team is committed to
-              consistently deliver high-quality, <br /> innovative, safe
-              projects on time.
+           We combine architectural precision,
+cinematic storytelling, <br></br>and cutting-edge
+visualization to create visuals that do more
+than showcase ideas
             </p>
             <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
               {firstLinks.map((link) => (
                 <FooterLink name={link.link} to={link.to} key={link.to} />
               ))}
             </div>
+            
             <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
-              {secondLinks.map((link) => (
-                <FooterLink name={link.link} to={link.to} key={link.to} />
-              ))}
-            </div>
-            <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
-              {thirdLinks.map((link) => (
-                <FooterLink name={link.link} to={link.to} key={link.to} />
-              ))}
+              <p className="text-[#277FCD] text-[1.25rem] font-bold mb-4">Find Us</p>
               <div className="flex items-center justify-center gap-6">
                 {social.map((link) => (
                   <FooterLink name={link.link} to={link.to} key={link.link} />
@@ -74,7 +63,7 @@ export function Footer() {
           </div>
         </div>
         <p className="text-[1rem] font-[325] text-[#BBC4D1]">
-          ©2026 EgySmart. All rights reserved.
+          ©2026 Celltek Studios. All rights reserved.
         </p>
       </div>
     </div>

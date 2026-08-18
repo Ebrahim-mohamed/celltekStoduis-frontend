@@ -4,12 +4,17 @@ import { Hero } from "@/components/Hero";
 
 export default function Contact() {
   return (
-    <div>
-      <Hero
+    <div >
+       {/* <Hero
+      smallText="contact"
         page="contact"
-        title="Contact Us"
-        pra="Let's build together. Contact us to begin."
-      />
+        title={<p>Premium <span className="text-[#5B8CFF]">solutions</span> crafted<br></br> around your vision</p>}
+        pra={
+          <span>
+           From architectural visualization to immersive experiences, we transform ideas into compelling visual realities.
+          </span>
+        }
+      /> */}
       <CommunicationSection />
       <EndSection />
     </div>

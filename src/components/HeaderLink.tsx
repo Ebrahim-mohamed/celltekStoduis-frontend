@@ -12,7 +12,7 @@ export function HeaderLink({
 }) {
   const path = usePathname();
 
-  if (link === "start-project")
+  if (name === "Start a project")
     return (
       <Link
         href="/start-project"

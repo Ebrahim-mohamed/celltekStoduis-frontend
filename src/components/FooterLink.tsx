@@ -18,7 +18,7 @@ export function FooterLink({ name, to }: { name: string; to: string }) {
         />
       </Link>
     );
-  if (name === "Company" || name === "Services" || name === "Connect")
+  if (name === "Find Us")
     return (
       <Link
         href={`/${to}`}

@@ -24,6 +24,7 @@ export function ValuesSection() {
   return (
     <div className="p-[var(--sectionPadding)] bg-[#050606]">
       <MostUsedHeader smallText="What We Do Best" mainHeader={<p>Who <span className="text-[#5B8CFF]">We Are</span> & What We<br></br> Stand For</p>} />
+      <p className="mb-[4rem] mt-[-4rem] text-[1.25rem] font-normal text-white text-center">“At Celltek Studios, we believe every idea deserves to be seen before it is built, launched, or experienced. We combine <br></br> architectural precision, creative storytelling, and advanced visualization technologies to transform concepts into immersive visual <br></br> experiences. From architectural developments and product launches to marketing campaigns and digital experiences”</p>
       <div className="flex items-center justify-between gap-4 max-[800px]:flex-col max-[800px]:w-full">
         {values.map((value) => (
           <ValueBox pra={value.pra} title={value.title} key={value.title} icon={value.icon}/>

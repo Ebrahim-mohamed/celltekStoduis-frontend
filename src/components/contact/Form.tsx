@@ -11,6 +11,10 @@ import { Input } from "./Input";
 ====================== */
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
+  country: z.string().min(3, "Country is required"),
+  phone: z.string().min(11, "Phone is required"),
+  budget: z.string().min(5, "budget is required"),
+  industry: z.string().min(5, "Industry is required"),
   email: z.string().email("Invalid email address"),
   subject: z.string().min(3, "Subject is required"),
   message: z.string().min(10, "Message must be at least 10 characters"),
@@ -23,7 +27,6 @@ type FormData = z.infer<typeof formSchema>;
    FORM COMPONENT
 ====================== */
 export function Form() {
-  const [userType, setUserType] = useState<"client" | "supplier">("client");
   const [status, setStatus] = useState<null | "success" | "error">(null);
   const [loading, setLoading] = useState(false);
 
@@ -60,58 +63,20 @@ export function Form() {
   };
 
   return (
-    <div className="w-[45%] max-[900px]:w-[70%] max-[600px]:w-[90%] ">
-      {/* User Type Toggle */}
-      <div className="flex mb-4">
-        <button
-          type="button"
-          className={`p-4 font-medium text-[1.25rem] ${
-            userType === "client"
-              ? "text-black bg-white"
-              : "text-white bg-[#277FCD26]"
-          }`}
-          onClick={() => {
-            setUserType("client");
-            setValue("userType", "client");
-          }}
-        >
-          I am a Client
-        </button>
-
-        <button
-          type="button"
-          className={`p-4 font-medium text-[1.25rem] ${
-            userType === "supplier"
-              ? "text-black bg-white"
-              : "text-white bg-[#277FCD26]"
-          }`}
-          onClick={() => {
-            setUserType("supplier");
-            setValue("userType", "supplier");
-          }}
-        >
-          I am a Supplier
-        </button>
-      </div>
-
+    <div className="w-[60%] max-[900px]:w-[70%] max-[600px]:w-[90%] ">
       {/* FORM */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-6 p-6"
       >
-        <div>
-          <p className="text-[0.8rem] text-[#FF383C] font-[350]">
-            Contact Us – {userType}
-          </p>
-          <p className="text-[2rem] text-white font-bold">Get In Touch</p>
-        </div>
+<div className="flex gap-[1rem] items-center justify-center w-full">
 
         <Input
           label="Full Name"
           placeholder="Your name..."
           error={errors.name?.message}
           {...register("name")}
-        />
+          />
 
         <Input
           label="E-mail"
@@ -119,17 +84,46 @@ export function Form() {
           type="email"
           error={errors.email?.message}
           {...register("email")}
-        />
+          />
+          </div>
+<div className="flex gap-[1rem] items-center justify-center w-full">
 
         <Input
-          label="Subject"
-          placeholder="Title..."
-          error={errors.subject?.message}
-          {...register("subject")}
-        />
+          label="Phone"
+          placeholder="Your name..."
+          error={errors.phone?.message}
+          {...register("phone")}
+          />
 
         <Input
-          label="Message"
+          label="Country"
+          placeholder="Your e-mail..."
+          type="email"
+          error={errors.country?.message}
+          {...register("country")}
+          />
+          </div>
+<div className="flex gap-[1rem] items-center justify-center w-full">
+
+        <Input
+          label="Industry"
+          placeholder="Industry"
+          error={errors.industry?.message}
+          {...register("industry")}
+          />
+
+        <Input
+          label="Budget Range"
+          placeholder="Budget Range"
+          
+          error={errors.budget?.message}
+          {...register("budget")}
+          />
+          </div>
+
+
+        <Input
+          label="Tell us about your project"
           placeholder="Your message..."
           isTextArea
           error={errors.message?.message}

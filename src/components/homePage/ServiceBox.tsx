@@ -16,7 +16,7 @@ export function ServiceBox({
       style={{ backgroundImage: `url(/home/${img}.png)` }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0  transition-all duration-300 group-hover:bg-[rgba(0,0,0,0.65)]" />
+      <div className="absolute inset-0  transition-all duration-300 bg-[rgba(0,0,0,0.65)] group-hover:bg-transparent" />
 
       {/* Arrow */}
       <div className="absolute top-2 right-4 z-10 text-[1.5rem] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">

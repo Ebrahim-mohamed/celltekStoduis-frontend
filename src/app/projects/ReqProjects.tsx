@@ -4,61 +4,97 @@ import { ProjectTemplate } from "./ProjectTemplate";
 type Project = {
   _id: string;
   title: string;
+  des:string;
   client: string;
-  images: string[];              // ← was: image: string
-  serviceKind: string;
-  category: string;
-  duration: string;
-  bua: number;
-  scopeOfWork: string;
-  budget: number;
-  status: string;
-  location: string;
+  images: string[];
+  vedios:string[];
+  tour:string
 };
 
-const SERVICE_MAP: Record<string, string> = {
-  "turnkey-projects": "Turnkey Projects",
-  "protective-coating": "Protective Coating",
-  "concrete-flooring": "Concrete Flooring",
-};
+const projects: Project[] = [
+  {
+    _id: "1",
+    title: "Project One",
+    des: "Description of project one",
+    client: "Client One",
+    images: [
+      "/images/project-1-1.jpg",
+      "/images/project-1-2.jpg",
+    ],
+    vedios: [
+      "/videos/project-1.mp4",
+    ],
+    tour: "/tours/project-1",
+  },
+  {
+    _id: "2",
+    title: "Project Two",
+    des: "Description of project two",
+    client: "Client Two",
+    images: [
+      "/images/project-2-1.jpg",
+      "/images/project-2-2.jpg",
+    ],
+    vedios: [
+      "/videos/project-2.mp4",
+    ],
+    tour: "/tours/project-2",
+  },
+  {
+    _id: "3",
+    title: "Project Three",
+    des: "Description of project three",
+    client: "Client Three",
+    images: [
+      "/images/project-3-1.jpg",
+      "/images/project-3-2.jpg",
+    ],
+    vedios: [
+      "/videos/project-3.mp4",
+    ],
+    tour: "/tours/project-3",
+  },
+  {
+    _id: "4",
+    title: "Project Four",
+    des: "Description of project four",
+    client: "Client Four",
+    images: [
+      "/images/project-4-1.jpg",
+      "/images/project-4-2.jpg",
+    ],
+    vedios: [
+      "/videos/project-4.mp4",
+    ],
+    tour: "/tours/project-4",
+  },
+];
 
-async function getProjects() {
-  const res = await fetch("http://localhost:4002/api/projects", {
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error("Failed to fetch projects");
-  return res.json();
-}
+// async function getProjects() {
+//   const res = await fetch("http://localhost:4002/api/projects", {
+//     cache: "no-store",
+//   });
+//   if (!res.ok) throw new Error("Failed to fetch projects");
+//   return res.json();
+// }
 
 export async function ReqProject({ cat }: { cat: string }) {
-  const projects: Project[] = await getProjects();
+  // const projects: Project[] = await getProjects();
 
-  const filteredProjects = projects.filter(
-    (project) => project.serviceKind === SERVICE_MAP[cat]
-  );
+
 
   return (
     <div>
-      <Hero
-        page="services"
-        title={SERVICE_MAP[cat]}
-        pra={`A Curated Selection of Our ${SERVICE_MAP[cat]} Project Landmarks`}
-      />
-
       <div className="px-[var(--sectionPadding)] py-4 bg-[#050606]">
-        {filteredProjects.map((project, index) => (
+        {projects.map((project, index) => (
           <ProjectTemplate
             key={project._id}
-            stat={project.status}
-            bud={project.budget}
+            description={project.des}
+            vedios={project.vedios}
+            tour={project.tour}
             num={index}
             title={project.title}
             client={project.client}
-            category={project.category || "N/A"}
-            duration={project.duration}
-            bua={String(project.bua)}
-            scop={project.scopeOfWork}
-            location={project.location}
             images={project.images}        // ← pass full array
           />
         ))}

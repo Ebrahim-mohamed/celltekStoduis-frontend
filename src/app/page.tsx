@@ -23,7 +23,7 @@ export default function Home() {
         pra={<span>EGYSMART where vision meets exactness</span>}
       />
       <WhoSection />
-      <ServicesSection />
+      {/* <ServicesSection /> */}
       <ClientsSection />
       <WhySection />
       <FeedbacksSection />

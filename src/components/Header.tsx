@@ -6,11 +6,11 @@ import { useState } from "react";
 const links = [
   { name: "Home", to: "" },
   { name: "Services", to: "services" },
-  { name: "Portfolio", to: "community" },
+  { name: "Portfolio", to: "portfolio" },
   { name: "About", to: "about" },
   // { name: "Subsidiary", to: "subsidiary" },
   { name: "Contact us", to: "contact" },
-  { name: "Start a project", to: "start-project" },
+  { name: "Start a project", to: "contact" },
 ];
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +23,7 @@ export function Header() {
 
       <Link href={"/"}>
         <Image
-          className="w-[12.9rem] aspect-69/16 mr-[3rem]"
+          className="w-[10rem] mr-[3rem]"
           src="/logo.png"
           alt="logo"
           width={300}
