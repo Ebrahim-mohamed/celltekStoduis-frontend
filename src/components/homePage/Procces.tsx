@@ -1,10 +1,10 @@
 import { MostUsedHeader } from "../MostUsedHeader";
 import { ProccesBox } from "./ProccesBox";
 const proccess=[{number:"01",head:"Brief",pra:"Understanding the Vision"},
-    {number:"02",head:"Delivery",pra:"Ready for Presentation & Impact"},
+    {number:"02",head:"Concept",pra:"Shaping the Visual Narrative"},
     {number:"03",head:"Review",pra:"Refinement Through Collaboration"},
     {number:"04",head:"Visualize",pra:"Crafting Photo Realistic Experiences"},
-    {number:"05",head:"Concept",pra:"Shaping the Visual Narrative"},
+    {number:"05",head:"Delivery",pra:"Ready for Presentation & Impact"},
 ]
 export function ProccesSection(){
     return <div className="p-[var(--sectionPadding)] bg-[#0A0A0A] overflow-hidden">

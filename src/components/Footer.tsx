@@ -24,7 +24,7 @@ const social = [
 ];
 export function Footer() {
   return (
-    <div className="p-20 max-[600px]:px-12 flex flex-col gap-12 bg-[#0A0A0A]">
+    <div className="p-20 pb-0 max-[600px]:px-12 flex flex-col gap-12 bg-[#0A0A0A] ">
       <div className="flex items-center justify-between gap-6 max-[500px]:flex-col max-[500px]:items-start">
         <Link href="/" className="w-fit">
           <Image
@@ -33,7 +33,7 @@ export function Footer() {
             alt="logo"
             width={300}
             height={300}
-          />
+            />
         </Link>
         {/* <CompanyProfileForm /> */}
       </div>
@@ -66,6 +66,7 @@ than showcase ideas
           ©2026 Celltek Studios. All rights reserved.
         </p>
       </div>
+<Image alt="footer" width={700} height={700} className="w-full" src="/foot.png" />
     </div>
   );
 }

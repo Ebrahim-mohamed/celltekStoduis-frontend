@@ -3,7 +3,7 @@ import { SectorBox } from "./SectorBox";
 const sectors=[{img:"real",head:"Real Estate",pra:"Immersive visuals that help sell properties before they are built."},
     {img:"agen",head:"Agencies",pra:"Precise visualizations that communicate design."},
     {img:"arct",head:"Architecture",pra:"Immersive visuals that help sell properties before they are built."},
-    {img:"productB",head:"Product Brands",pra:"Immersive visuals that help sell properties before they are built."},
+    {img:"productB",head:"Product Brands",pra:"Photorealistic visuals that make products feel real before they’re made."},
 ]
 export function SectorsSection(){
     return <div className="p-[var(--sectionPadding)] bg-[#0A0A0A] overflow-hidden items-start flex gap-[2rem] max-[700px]:flex-col">

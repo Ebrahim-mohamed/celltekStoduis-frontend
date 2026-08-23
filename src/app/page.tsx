@@ -6,6 +6,7 @@ import { FeedbacksSection } from "@/components/homePage/FeedbacksSection";
 import { WhySection } from "@/components/homePage/Why";
 import { ProccesSection } from "@/components/homePage/Procces";
 import { SectorsSection } from "@/components/homePage/Sectors";
+import { EndSection } from "@/components/contact/EndSection";
 
 
 
@@ -17,10 +18,10 @@ export default function Home() {
         page="home"
         title={
           <span>
-            Building The Future <br /> With Precision
+            Built Beyond Your  <br /> Imagination
           </span>
         }
-        pra={<span>EGYSMART where vision meets exactness</span>}
+        pra={<span>Visualize. Impress. Bring your vision to life.</span>}
       />
       <WhoSection />
       {/* <ServicesSection /> */}
@@ -29,6 +30,7 @@ export default function Home() {
       <FeedbacksSection />
       <ProccesSection/>
       <SectorsSection/>
+      <EndSection/>
     </div>
   );
 }

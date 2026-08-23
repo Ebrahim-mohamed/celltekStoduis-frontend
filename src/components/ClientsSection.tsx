@@ -66,7 +66,7 @@ export function ClientsSection() {
             <img
               src={`/home/icons/${logo}.png`}
               alt="client-logo"
-              className="h-22 object-contain pointer-events-none"
+              className="h-15 object-contain pointer-events-none"
               draggable={false}
             />
           </SwiperSlide>

@@ -17,21 +17,25 @@ export function Hero({
       className="relative p-[var(--section-padding)] w-dvw h-dvh flex items-center justify-center gap-4 text-white text-center flex-col bg-cover bg-no-repeat overflow-hidden"
       style={
         page !== "home"
-          ? { backgroundImage: `url(/${page}/hero.webp)` }
+          ? { backgroundColor: `black` }
           : undefined
       }
     >
       {/* Background video (home only) */}
       {page === "home" && (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
-        >
-          <source src="/ved.mp4" type="video/mp4" />
-        </video>
+        <>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+          >
+            <source src="https://res.cloudinary.com/dnevlp0j4/video/upload/v1787500484/YouCut_20260823_184923058_k6mbl9.mp4" type="video/mp4" />
+          </video>
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-black/65 z-[5] pointer-events-none" />
+        </>
       )}
       {/* Content */}
     <div className="text-[#E6E9EF] text-[0.8rem] py-2 px-4 rounded-full bg-[#212121]">
