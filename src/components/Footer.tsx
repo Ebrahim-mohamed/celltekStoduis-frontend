@@ -10,6 +10,10 @@ const firstLinks = [
   { link: "Portfolio", to: "portfolio" },
   { link: "Contact Us", to: "contact" },
 ];
+const secLinks = [
+  { link: "Terms & Conditions", to: "terms" },
+  { link: "Privacy Policy", to: "privacy" },
+];
 const thirdLinks = [{ link: "Find Us", to: "contact" }];
 const social = [
   { link: "facebook", to: "https://www.facebook.com/celltekstudios" },
@@ -40,11 +44,9 @@ export function Footer() {
       <div>
         <div className="flex flex-col gap-10">
           <div className="flex items-start justify-between  w-full max-[800px]:flex-col max-[800px]:gap-4 ">
-            <p className="text-[1rem] font-[325] text-white max-[800px]:mb-6">
-           We combine architectural precision,
-cinematic storytelling, <br></br>and cutting-edge
-visualization to create visuals that do more
-than showcase ideas
+            <p className="text-[1rem] font-[325] text-white max-[800px]:mb-6 max-w-[30rem]">
+           We transform ideas into immersive visual experiences that bring spaces and products to life before they exist. From Architectural Visualization and Product Rendering to Visual Tours, Animation, and Concept & Marketing Assets, we create photorealistic visuals that communicate your vision, elevate your brand, and help your audience see the final result before it becomes reality.
+
             </p>
             <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
               {firstLinks.map((link) => (
@@ -52,13 +54,18 @@ than showcase ideas
               ))}
             </div>
             
-            <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
+            <div className="flex flex-col items-start justify-center gap-2 max-[800px]:gap-4">
               <p className="text-[#277FCD] text-[1.25rem] font-bold mb-4">Find Us</p>
               <div className="flex items-center justify-center gap-6">
                 {social.map((link) => (
                   <FooterLink name={link.link} to={link.to} key={link.link} />
                 ))}
               </div>
+              <div className="flex flex-col items-start justify-center gap-2 max-[800px]:gap-4">
+              {secLinks.map((link) => (
+                <FooterLink name={link.link} to={link.to} key={link.to} />
+              ))}
+            </div>
             </div>
           </div>
         </div>
