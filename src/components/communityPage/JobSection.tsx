@@ -17,7 +17,7 @@ export function JobsSection() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/jobs", {
+        const res = await fetch("/api/jobs", {
           cache: "no-store",
         });
 

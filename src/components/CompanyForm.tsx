@@ -15,7 +15,7 @@ export default function CompanyProfileForm() {
       setLoading(true);
 
       // 1️⃣ send email to backend
-      await fetch("http://localhost:4002/api/company-profile", {
+      await fetch("/api/company-profile", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export default function CompanyProfileForm() {
 
       // 2️⃣ download PDF
       const link = document.createElement("a");
-      link.href = "http://localhost:4002/uploads/companyProfile.pdf";
+      link.href = "/uploads/companyProfile.pdf";
       link.download = "CompanyProfile.pdf";
       document.body.appendChild(link);
       link.click();

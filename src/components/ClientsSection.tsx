@@ -19,7 +19,7 @@ export function ClientsSection() {
   useEffect(() => {
     const fetchLogos = async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/logos", {
+        const res = await fetch("/api/logos", {
           cache: "no-store",
         });
 
@@ -64,7 +64,7 @@ export function ClientsSection() {
             className="flex! items-center! justify-center!"
           >
             <img
-              src={`http://localhost:4002/uploads/${logo.image}`}
+              src={`/uploads/${logo.image}`}
               alt="client-logo"
               className="h-22 object-contain pointer-events-none"
               draggable={false}

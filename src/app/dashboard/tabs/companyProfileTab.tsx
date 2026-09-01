@@ -17,7 +17,7 @@ export default function CompanyProfileTab() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/company-profile");
+        const res = await fetch("/api/company-profile");
         if (!res.ok) throw new Error("Failed to fetch data");
         const data = await res.json();
         setItems(data);
@@ -32,7 +32,7 @@ export default function CompanyProfileTab() {
   /* ================= DELETE ================= */
   const deleteItem = async (id: string) => {
     try {
-      await fetch(`http://localhost:4002/api/company-profile/${id}`, {
+      await fetch(`/api/company-profile/${id}`, {
         method: "DELETE",
       });
       setItems((prev) => prev.filter((i) => i._id !== id));

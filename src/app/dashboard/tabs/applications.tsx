@@ -20,7 +20,7 @@ export default function JobsTab() {
   useEffect(() => {
     const loadApplicants = async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/join");
+        const res = await fetch("/api/join");
         const data = await res.json();
         setApplicants(data);
       } catch (err) {
@@ -35,7 +35,7 @@ export default function JobsTab() {
 
   const deleteApplicant = async (id: string) => {
     try {
-      await fetch(`http://localhost:4002/api/join/${id}`, {
+      await fetch(`/api/join/${id}`, {
         method: "DELETE",
       });
 

@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const API_URL = "http://localhost:4002";
+const API_URL = "";
 
 function VideoSection({
   videos,

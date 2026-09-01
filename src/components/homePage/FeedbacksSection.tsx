@@ -32,7 +32,7 @@ export function FeedbacksSection() {
         setLoading(true);
         setError(false);
 
-        const res = await fetch(`http://localhost:4002/api/testimonials`);
+        const res = await fetch(`/api/testimonials`);
 
         if (!res.ok) {
           throw new Error("Failed to fetch testimonials");

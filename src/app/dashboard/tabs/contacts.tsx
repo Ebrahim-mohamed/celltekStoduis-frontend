@@ -35,7 +35,7 @@ export default function ContactsTab() {
     const fetchContacts = async () => {
       try {
         const res = await fetch(
-          "http://localhost:4002/api/contacts",
+          "/api/contacts",
         );
 
         if (!res.ok) {
@@ -60,7 +60,7 @@ export default function ContactsTab() {
   const markAsSeen = async (id: string) => {
     try {
       const res = await fetch(
-        `http://localhost:4002/api/contacts/${id}/seen`,
+        `/api/contacts/${id}/seen`,
         {
           method: "PATCH",
         },
@@ -89,7 +89,7 @@ export default function ContactsTab() {
   const deleteContact = async (id: string) => {
     try {
       const res = await fetch(
-        `http://localhost:4002/api/contacts/${id}`,
+        `/api/contacts/${id}`,
         {
           method: "DELETE",
         },

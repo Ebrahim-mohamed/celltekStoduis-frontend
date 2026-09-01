@@ -63,7 +63,7 @@ export function Form() {
     setStatus(null);
 
     try {
-      const res = await fetch("http://localhost:4002/api/contacts", {
+      const res = await fetch("/api/contacts", {
         method: "POST",
 
         headers: {

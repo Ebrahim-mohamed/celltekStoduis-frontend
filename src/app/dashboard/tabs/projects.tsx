@@ -32,7 +32,7 @@ const projectSchema = z.object({
 type ProjectForm = z.infer<typeof projectSchema>;
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:4002";
+  process.env.NEXT_PUBLIC_API_URL || "";
 
 const UPLOADS_URL = `${API_URL}/uploads/`;
 

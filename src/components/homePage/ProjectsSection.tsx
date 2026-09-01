@@ -27,7 +27,7 @@ export function ProjectsSection() {
     const fetchProjects = async () => {
       try {
         const res = await fetch(
-          "http://localhost:4002/api/projects/important"
+          "/api/projects/important"
         );
 
         if (!res.ok) {
@@ -112,7 +112,7 @@ export function ProjectsSection() {
                 title={project.title}
                 location={project.location || "N/A"}
                 bue={`${project.bua.toLocaleString()} m²`}
-                img={`http://localhost:4002/uploads/${project.images?.[0]}`}
+                img={`/uploads/${project.images?.[0]}`}
               />
             </div>
           </SwiperSlide>
