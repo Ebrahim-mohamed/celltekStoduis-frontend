@@ -15,13 +15,13 @@ export default function DashboardPage() {
     <Tabs defaultValue="contacts">
       <TabsList className="mb-6">
         <TabsTrigger value="contacts">Contacts</TabsTrigger>
-        <TabsTrigger value="news">News</TabsTrigger>
-        <TabsTrigger value="jobs">Jobs</TabsTrigger>
+        {/* <TabsTrigger value="news">News</TabsTrigger> */}
+        {/* <TabsTrigger value="jobs">Jobs</TabsTrigger> */}
         <TabsTrigger value="projects">Projects</TabsTrigger>
         <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
         <TabsTrigger value="logos">Clients logo</TabsTrigger>
-        <TabsTrigger value="application">Applications</TabsTrigger>
-        <TabsTrigger value="shares">Shares</TabsTrigger>
+        {/* <TabsTrigger value="application">Applications</TabsTrigger> */}
+        {/* <TabsTrigger value="shares">Shares</TabsTrigger> */}
       </TabsList>
 
       <TabsContent value="contacts">
