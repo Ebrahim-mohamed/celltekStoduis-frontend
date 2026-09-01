@@ -12,30 +12,30 @@ type Logo = {
   _id: string;
   image: string;
 };
-const logos=[1,2,3,4,5,6]
+
 export function ClientsSection() {
-  // const [logos, setLogos] = useState<Logo[]>([]);
+  const [logos, setLogos] = useState<Logo[]>([]);
 
-  // useEffect(() => {
-  //   const fetchLogos = async () => {
-  //     try {
-  //       const res = await fetch("http://localhost:4002/api/logos", {
-  //         cache: "no-store",
-  //       });
+  useEffect(() => {
+    const fetchLogos = async () => {
+      try {
+        const res = await fetch("http://localhost:4002/api/logos", {
+          cache: "no-store",
+        });
 
-  //       if (!res.ok) throw new Error("Failed to fetch logos");
+        if (!res.ok) throw new Error("Failed to fetch logos");
 
-  //       const data = await res.json();
-  //       setLogos(data);
-  //     } catch (err) {
-  //       console.error("Error fetching logos:", err);
-  //     }
-  //   };
+        const data = await res.json();
+        setLogos(data);
+      } catch (err) {
+        console.error("Error fetching logos:", err);
+      }
+    };
 
-  //   fetchLogos();
-  // }, []);
+    fetchLogos();
+  }, []);
 
-  // if (logos.length === 0) return null;
+  if (logos.length === 0) return null;
 
   return (
     <div className="py-[var(--sectionPadding)] bg-[#050606]">
@@ -60,19 +60,6 @@ export function ClientsSection() {
       >
         {logos.map((logo) => (
           <SwiperSlide
-            key={logo}
-            className="flex! items-center! justify-center!"
-          >
-            <img
-              src={`/home/icons/${logo}.png`}
-              alt="client-logo"
-              className="h-15 object-contain pointer-events-none"
-              draggable={false}
-            />
-          </SwiperSlide>
-        ))}
-        {/* {logos.map((logo) => (
-          <SwiperSlide
             key={logo._id}
             className="flex! items-center! justify-center!"
           >
@@ -83,7 +70,7 @@ export function ClientsSection() {
               draggable={false}
             />
           </SwiperSlide>
-        ))} */}
+        ))}
       </Swiper>
     </div>
   );
