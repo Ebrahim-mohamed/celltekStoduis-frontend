@@ -1,37 +1,51 @@
-import Image from "next/image";
 import Link from "next/link";
 
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:4002";
+
 export function ProjectBox({
-  img,
-  title,  
-  des,
   id,
-  cat,
-  name
+  title,
+  images,
 }: {
-  img: string;
-  title: string;  
-  des: string;
-  id:number,
-  cat: string;
-  name:string;
+  id: string;
+  title: string;
+  images: string[];
 }) {
+  const image =
+    images && images.length > 0
+      ? `${API_URL}/uploads/${images[0]}`
+      : "";
+
   return (
-    <div
-      className={`  items-center justify-center max-[650px]:flex-col ${id%2==0?" flex-row-reverse  ":"  "} flex relative bg-[#1F1F1F]`}
+    <Link
+      href={`/projects/${id}`}
+      className="relative block aspect-square overflow-hidden group bg-[#1F1F1F]"
     >
-      <Image src={`/services/${img}.png`} alt="image" width={500} height={500} className="w-full"/>
-      <div className="w-full  ">
-        <div className="flex flex-col gap-[1.5rem] p-[5rem]">
-<p className="text-[2.5rem] text-[#E6E9EF] font-bold">{title}</p>
-<p className="text-[1rem] text-[#B8BDC7] font-normal">{des}</p>
-      <Link
-        href={`/projects/${name}`}
-        className="text-[1rem] font-medium text-[#E6E9EF]"
-        >View Project
-      </Link>
+      {image ? (
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center text-white">
+          No Image
+        </div>
+      )}
+
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/65 transition-all duration-300 flex items-center justify-center">
+        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-6 text-center">
+          <h2 className="text-white text-2xl md:text-3xl font-bold">
+            {title}
+          </h2>
+
+          <p className="text-[#E6E9EF] mt-3">
+            View Project
+          </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
