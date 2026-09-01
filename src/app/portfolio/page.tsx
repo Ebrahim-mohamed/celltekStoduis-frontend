@@ -1,3 +1,4 @@
+
 import { Hero } from "@/components/Hero";
 import { ProjectBox } from "@/components/portfolioPage/ProjectBox";
 
@@ -8,14 +9,10 @@ type Project = {
   images: string[];
 };
 
-
 async function getProjects(): Promise<Project[]> {
-  const response = await fetch(
-    `/api/projects`,
-    {
-      cache: "no-store",
-    }
-  );
+  const response = await fetch("http://127.0.0.1:4002/api/projects", {
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch projects");
@@ -34,9 +31,7 @@ export default async function Portfolio() {
         page="services"
         title={
           <p>
-            <span className="text-[#5B8CFF]">
-              Exceptional Work
-            </span>{" "}
+            <span className="text-[#5B8CFF]">Exceptional Work</span>{" "}
             Built
             <br />
             Around Your Vision
@@ -47,9 +42,7 @@ export default async function Portfolio() {
 
       <div className="px-[var(--sectionPadding)] py-16 bg-[#050606]">
         {projects.length === 0 ? (
-          <p className="text-white text-center">
-            No projects available.
-          </p>
+          <p className="text-white text-center">No projects available.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project) => (
