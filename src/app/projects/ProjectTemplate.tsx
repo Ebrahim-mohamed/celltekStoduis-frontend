@@ -10,7 +10,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const API_URL = "";
 
 function VideoSection({
   videos,
@@ -88,7 +87,7 @@ function ImageSection({
                 >
                   <div className="w-full bg-[#111]">
                     <img
-                      src={`${API_URL}/uploads/${image}`}
+                      src={`/uploads/${image}`}
                       alt={`${title} ${index + 1}`}
                       className="w-full max-h-[850px] object-contain"
                     />
@@ -100,7 +99,7 @@ function ImageSection({
         ) : (
           <div className="w-full bg-[#111]">
             <img
-              src={`${API_URL}/uploads/${images[0]}`}
+              src={`/uploads/${images[0]}`}
               alt={title}
               className="w-full max-h-[850px] object-contain"
             />

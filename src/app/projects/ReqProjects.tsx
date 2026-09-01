@@ -10,15 +10,12 @@ type Project = {
   tours: string[];
 };
 
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  "";
 
 async function getProject(
   id: string
 ): Promise<Project | null> {
   const response = await fetch(
-    `${API_URL}/api/projects/${id}`,
+    `/api/projects/${id}`,
     {
       cache: "no-store",
     }

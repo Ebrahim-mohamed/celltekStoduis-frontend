@@ -31,10 +31,8 @@ const projectSchema = z.object({
 
 type ProjectForm = z.infer<typeof projectSchema>;
 
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "";
 
-const UPLOADS_URL = `${API_URL}/uploads/`;
+const UPLOADS_URL = `/uploads/`;
 
 function ImageSlider({
   images,
@@ -179,7 +177,7 @@ export default function ProjectsTab() {
       setLoading(true);
 
       const response = await fetch(
-        `${API_URL}/api/projects`,
+        `/api/projects`,
         {
           cache: "no-store",
         }
@@ -328,7 +326,7 @@ export default function ProjectsTab() {
 
       if (editingProject) {
         response = await fetch(
-          `${API_URL}/api/projects/${editingProject._id}`,
+          `/api/projects/${editingProject._id}`,
           {
             method: "PUT",
             body: formData,
@@ -336,7 +334,7 @@ export default function ProjectsTab() {
         );
       } else {
         response = await fetch(
-          `${API_URL}/api/projects`,
+          `/api/projects`,
           {
             method: "POST",
             body: formData,
@@ -379,7 +377,7 @@ export default function ProjectsTab() {
 
     try {
       const response = await fetch(
-        `${API_URL}/api/projects/${id}`,
+        `/api/projects/${id}`,
         {
           method: "DELETE",
         }
