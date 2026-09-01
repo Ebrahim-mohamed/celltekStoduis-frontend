@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation";
 import { ProjectTemplate } from "./ProjectTemplate";
 
@@ -10,12 +11,9 @@ type Project = {
   tours: string[];
 };
 
-
-async function getProject(
-  id: string
-): Promise<Project | null> {
+async function getProject(id: string): Promise<Project | null> {
   const response = await fetch(
-    `/api/projects/${id}`,
+    `http://127.0.0.1:4002/api/projects/${id}`,
     {
       cache: "no-store",
     }
@@ -26,9 +24,7 @@ async function getProject(
   }
 
   if (!response.ok) {
-    throw new Error(
-      "Failed to fetch project"
-    );
+    throw new Error("Failed to fetch project");
   }
 
   return response.json();
