@@ -1,8 +1,5 @@
 import Link from "next/link";
 
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  "";
 
 export function ProjectBox({
   id,
@@ -15,7 +12,7 @@ export function ProjectBox({
 }) {
   const image =
     images && images.length > 0
-      ? `${API_URL}/uploads/${images[0]}`
+      ? `/uploads/${images[0]}`
       : "";
 
   return (

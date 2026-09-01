@@ -8,13 +8,10 @@ type Project = {
   images: string[];
 };
 
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  "";
 
 async function getProjects(): Promise<Project[]> {
   const response = await fetch(
-    `${API_URL}/api/projects`,
+    `/api/projects`,
     {
       cache: "no-store",
     }
