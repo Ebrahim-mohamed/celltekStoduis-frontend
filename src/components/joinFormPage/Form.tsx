@@ -44,7 +44,7 @@ export function Form() {
   useEffect(() => {
     const loadJobs = async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/jobs");
+        const res = await fetch("http://localhost:4002/api/contact");
         const data = await res.json();
         setJobs(data);
       } catch (err) {
