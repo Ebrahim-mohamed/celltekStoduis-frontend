@@ -7,6 +7,9 @@ import { WhySection } from "@/components/homePage/Why";
 import { ProccesSection } from "@/components/homePage/Procces";
 import { SectorsSection } from "@/components/homePage/Sectors";
 import { EndSection } from "@/components/contact/EndSection";
+import { RealEstateService } from "@/components/homePage/RealEstateService";
+import About from "./about/page";
+import { AboutSection } from "@/components/homePage/About";
 
 
 
@@ -23,12 +26,14 @@ export default function Home() {
         }
         pra={<span>Visualize. Impress. Bring your vision to life.</span>}
       />
+      <AboutSection/>
+      <RealEstateService/>
       <WhoSection />
       {/* <ServicesSection /> */}
       <ClientsSection />
-      <WhySection />
-      <FeedbacksSection />
-      <ProccesSection/>
+      {/* <WhySection /> */}
+      {/* <FeedbacksSection /> */}
+      {/* <ProccesSection/> */}
       <SectorsSection/>
       <EndSection/>
     </div>
