@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { ServiceButton } from "./servicesPage/ServiceButton";
 
 export function Hero({
   title,
@@ -22,7 +23,7 @@ export function Hero({
       }
     >
       {/* Background video (home only) */}
-      {page === "home" && (
+      {page === "realEstate" && (
         <>
           <video
             autoPlay
@@ -31,7 +32,7 @@ export function Hero({
             playsInline
             className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
           >
-            <source src="https://res.cloudinary.com/dnevlp0j4/video/upload/v1787500484/YouCut_20260823_184923058_k6mbl9.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dnevlp0j4/video/upload/v1784468034/Story_3_lrnkhy.mp4" type="video/mp4" />
           </video>
           {/* Dark overlay for readability */}
           <div className="absolute inset-0 bg-black/65 z-[5] pointer-events-none" />
@@ -46,6 +47,14 @@ export function Hero({
       </div>
 
       <div className="relative z-10 text-[1rem] text-[#B8BDC7] font-normal">{pra}</div>
+{page=="services"&&
+        <div className="flex  gap-5  mt-[2rem] w-full justify-center">
+          <ServiceButton name="Marketing" />
+          <ServiceButton name="Digital Marketing" />
+          <ServiceButton name="Architectural Visualization" />
+        </div>
+}
+
 
     </div>
   );
